@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aplicaciones backend</title>
+</head>
+<body>
+    <h1>listado de productos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th><a href="/?sortby=id"> #id </a></th>
+                <th><a href="/?sortby=cantidad"> cantidad </a></th>
+                <th><a href="/?sortby=precio"> precio </a></th>
+                <th><a href="/?sortby=nombre"> nombre </a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% productos.forEach((producto) => { %>
+                <tr>
+                    <td><%= producto.id %></td>
+                    <td><%= producto.cantidad %></td>
+                    <td><%= producto.precio %></td>
+                    <td><%= producto.nombre %></td>
+                    <td>
+                        <a href="/eliminar_producto/<%= producto.id %>">Eliminar Producto</a>
+
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <p>total de productos : <%= totalproductos %></p>
+
+    <h2>Agregar producto</h2>
+    <form action="/agregar_producto" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" required>
+
+        <label for="precio">Precio:</label>
+        <input type="number" step="0.01" id="precio" name="precio" required>
+
+        <button type="submit">Agregar</button>
+    </form>
+</body>
+</html>
+
